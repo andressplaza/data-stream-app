@@ -21,7 +21,7 @@ use Illuminate\Notifications\Notifiable;
  * @property-read CarbonInterface $created_at
  * @property-read CarbonInterface $updated_at
  */
-final class User extends Authenticatable implements MustVerifyEmail
+final class User extends Authenticatable 
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
@@ -34,6 +34,8 @@ final class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'shopify_api_token',
+        'facebook_pixel_token',
     ];
 
     /**
@@ -41,11 +43,13 @@ final class User extends Authenticatable implements MustVerifyEmail
      *
      * @return array<string, string>
      */
-    public function casts(): array
+    protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'shopify_api_token' => 'encrypted',
+            'facebook_pixel_token' => 'encrypted',
         ];
     }
 }
