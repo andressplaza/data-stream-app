@@ -32,10 +32,10 @@ final class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => self::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'shopify_api_token' => null,
-            'facebook_pixel_token' => null,
-            'shopify_store_url' => null,
-            'facebook_pixel_id' => null,
+            'shopify_api_token' => fake()->optional()->uuid(),
+            'facebook_pixel_token' => fake()->optional()->uuid(),
+            'shopify_store_url' => fake()->optional()->url(),
+            'facebook_pixel_id' => fake()->optional()->numerify('###########'),
         ];
     }
 
